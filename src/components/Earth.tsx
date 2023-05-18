@@ -1,21 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import * as THREE from "three";
-
-// import EarthDayMap from "../../public/8k_earth_daymap.jpg";
-// import EarthNormalMap from "../../public/8k_earth_normal_map.jpg";
-// import EarthSpecularMap from "../../public/8k_earth_specular_map.jpg";
-// import EarthCloudsMap from "../../public/8k_earth_clouds.jpg";
 import { TextureLoader } from "three";
 import { ThreeEvent, useLoader } from "@react-three/fiber";
 import { Html, Stars } from "@react-three/drei";
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  Typography,
-  Button
-} from "@material-tailwind/react";
+import map from './../data/map.json'
+import CityCard from "./CityCard";
 
 function Earth(props: any) {
   const colorMap = useLoader(
@@ -39,9 +28,25 @@ function Earth(props: any) {
 
   const handleModal = () => {
     return (event: ThreeEvent<MouseEvent>) => {
-      setShowModal(true);
+      setShowModal(!showModal);
     }
   } 
+
+  const convertCoordinatesToPosition = (latitude: number, longitude: number) => {
+    const phi = (latitude * Math.PI) / 180;
+    const theta = ((longitude - 180) * Math.PI) / 180;
+
+    const x = -Math.cos(phi) * Math.cos(theta);
+    const y = Math.sin(phi);
+    const z = Math.cos(phi) * Math.sin(theta);
+
+    return new THREE.Vector3(x, y, z);
+  };
+
+  // const cityPosition1 = convertCoordinatesToPosition(22.3193, 114.1694);
+  const hongKongPosition = convertCoordinatesToPosition(map.coordinates[0].lat, map.coordinates[0].lon);
+  const sanDiegoPosition = convertCoordinatesToPosition(map.coordinates[1].lat, map.coordinates[1].lon);
+
 
 
 
@@ -76,64 +81,20 @@ function Earth(props: any) {
           roughness={0.7}
           />
       </mesh>
-      <mesh position={[0, 0.6, 1]} onClick={handleModal()}>
-        <cylinderGeometry args={[0.01, 0.01, 1, 6]} />
+      <mesh position={hongKongPosition} onClick={handleModal()}>
+        <cylinderGeometry args={[0.005, 0.005, 0.05, 10]} />
       </mesh>
-      <mesh position={[0.8, 0.6, 0]}>
-        <cylinderGeometry args={[0.01, 0.01, 0.2, 6]} />
+      <mesh position={sanDiegoPosition} onClick={handleModal()}>
+        <cylinderGeometry args={[0.005, 0.005, 0.05, 10]} />
       </mesh>
-      {/* <Html>
-        <button onClick={handleModal()}>
-        </button>
-      </Html> */}
+      
       {showModal ? 
       <Html>
-        {/* <div className="bg-white h-40 w-96">
-          <button className="ml-auto border-0 text-black float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
-            onClick={() => setShowModal(false)}
-            >
-            <span className="text-black h-6 w-6 text-2xl block">
-              ×
-            </span>
-          </button>
-          <p>Hong Kong</p>
-        </div> */}
-        <Card className="w-96 overflow-hidden left-[-800px] top-[-300px]">
-          <CardHeader
-          floated={false}
-          shadow={false}
-          color="transparent"
-          className="m-0 rounded-none"
-          >
-            <img
-              src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80"
-              alt="ui/ux review check"
-            />
-          </CardHeader>
-          <CardBody>
-            <button className="ml-auto mr-[-18px] mt-[-22px] border-0 text-black float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
-              onClick={() => setShowModal(false)}
-              >
-              <span className="text-black h-6 w-6 text-2xl block hover:text-gray-800 hover:scale-125">
-                ×
-              </span>
-            </button>
-            <Typography variant="h5" color="blue-gray" className="mb-2">
-              UI/UX Review Check
-            </Typography>
-            <Typography>
-              The place is close to Barceloneta Beach and bus stop just 2 min by walk
-              and near to &quot;Naviglio&quot; where you can enjoy the main night life
-              in Barcelona.
-            </Typography>
-          </CardBody>
-          <CardFooter className="pt-0">
-            <Button>Learn More</Button>
-          </CardFooter>
-        </Card>
+        <CityCard onClick={() => setShowModal(!showModal)} />
       </Html> : null}
     </>
   );
 }
+
 
 export default Earth;

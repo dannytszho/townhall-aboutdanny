@@ -1,8 +1,6 @@
 "use client"
 import React from 'react'
 import { Canvas } from '@react-three/fiber'
-import Box from './Box'
-import LightBulb from './LightBulb'
 import { Stats, OrbitControls } from '@react-three/drei'
 import Earth from './Earth'
 
@@ -18,7 +16,6 @@ const ThreeScene = () => {
         }}
       >
         <ambientLight color={"white"} intensity={0.3} />
-        <LightBulb position={[0, 3, 0]} />
         <Earth />
         <OrbitControls />
         <Stats /> 

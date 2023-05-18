@@ -1,0 +1,40 @@
+{
+    "type": "Map",
+    "coordinates": [
+        {
+            "text": "HKG",
+            "size": 1.0,
+            "city": "Hong Kong",
+            "lat": 22.396428,
+            "lon": 114.109497
+        },
+        {
+            "text": "SD",
+            "size": 1.0,
+            "city": "San Diego",
+            "lat": 32.715738,
+            "lon": -117.1610838
+        },
+        {
+            "text": "SL",
+            "size": 1.0,
+            "city": "San Leandro",
+            "lat": 37.7249296,
+            "lon": -122.1560768
+        },
+        {
+            "text": "ATX",
+            "size": 1.0,
+            "city": "Austin",
+            "lat": 30.267153,
+            "lon": -97.7430608
+        },
+        {
+            "text": "ATX",
+            "size": 1.0,
+            "city": "San Antonio",
+            "lat": 29.4241219,
+            "lon": -98.4936282
+        }
+    ]
+}
