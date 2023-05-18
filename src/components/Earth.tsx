@@ -3,8 +3,14 @@ import * as THREE from "three";
 import { TextureLoader } from "three";
 import { ThreeEvent, useLoader } from "@react-three/fiber";
 import { Html, Stars } from "@react-three/drei";
-import map from './../data/map.json'
+import cityData from './../data/cityData.json'
 import CityCard from "./CityCard";
+
+type CityProps = {
+  city: string | undefined;
+  lat: number;
+  lon: number;
+}
 
 function Earth(props: any) {
   const colorMap = useLoader(
@@ -25,10 +31,13 @@ function Earth(props: any) {
   );
 
   const [showModal, setShowModal] = useState(false);
+  const [currentCity, setCurrentCity] = useState<CityProps | null>(null);
 
-  const handleModal = () => {
+
+  const handleModal = (city: any) => {
     return (event: ThreeEvent<MouseEvent>) => {
       setShowModal(!showModal);
+      setCurrentCity(city);
     }
   } 
 
@@ -44,8 +53,8 @@ function Earth(props: any) {
   };
 
   // const cityPosition1 = convertCoordinatesToPosition(22.3193, 114.1694);
-  const hongKongPosition = convertCoordinatesToPosition(map.coordinates[0].lat, map.coordinates[0].lon);
-  const sanDiegoPosition = convertCoordinatesToPosition(map.coordinates[1].lat, map.coordinates[1].lon);
+  const cityPositions = cityData.coordinates.map((city) => convertCoordinatesToPosition(city.lat, city.lon));
+  
 
 
 
@@ -81,17 +90,19 @@ function Earth(props: any) {
           roughness={0.7}
           />
       </mesh>
-      <mesh position={hongKongPosition} onClick={handleModal()}>
-        <cylinderGeometry args={[0.005, 0.005, 0.05, 10]} />
-      </mesh>
-      <mesh position={sanDiegoPosition} onClick={handleModal()}>
-        <cylinderGeometry args={[0.005, 0.005, 0.05, 10]} />
-      </mesh>
-      
-      {showModal ? 
-      <Html>
-        <CityCard onClick={() => setShowModal(!showModal)} />
-      </Html> : null}
+
+      {cityData.coordinates.map((city, index) => (
+        <React.Fragment key={index}>
+          <mesh position={convertCoordinatesToPosition(city.lat, city.lon)} onClick={handleModal(city)}>
+            <cylinderGeometry args={[0.005, 0.005, 0.05, 10]} />
+          </mesh>
+          {showModal ? 
+            <Html>
+                <CityCard onClose={() => setShowModal(false)} name={currentCity?.city} />
+            </Html> : null 
+          }
+        </React.Fragment>
+      ))}
     </>
   );
 }
