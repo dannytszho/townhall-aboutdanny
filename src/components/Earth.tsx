@@ -5,6 +5,7 @@ import { ThreeEvent, useLoader } from "@react-three/fiber";
 import { Html, Stars } from "@react-three/drei";
 import cityData from './../data/cityData.json'
 import CityCard from "./CityCard";
+import { getCities } from "@/sanity/sanity-utils";
 
 type CityProps = {
   city: string | undefined;
@@ -12,7 +13,7 @@ type CityProps = {
   lon: number;
 }
 
-function Earth(props: any) {
+function Earth({cityList}:any) {
   const colorMap = useLoader(
     TextureLoader,
     './img/8k_earth_daymap.jpg'
@@ -106,6 +107,25 @@ function Earth(props: any) {
     </>
   );
 }
+
+// const client = createClient({
+//   projectId: "prumhpvv", // you can find this in sanity.json
+//   dataset: "city", // or the name you chose in step 1
+//   apiVersion: "2023-05-18", // use a UTC date string
+//   useCdn: false, // `false` if you want to ensure fresh data
+// });
+
+// export const getCityData = async () => {
+//   const cityListQuery = `*[_type == "city"]`;
+
+      
+//   const cityList = await client.fetch(cityListQuery);
+//   console.log(cityList)
+  
+//   return {
+//     props: { ...cityList },
+//   };
+// };
 
 
 export default Earth;

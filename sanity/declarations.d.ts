@@ -1,0 +1,1 @@
+declare module './config/client-config';
