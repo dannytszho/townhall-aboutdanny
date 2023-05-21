@@ -35,7 +35,7 @@ export default defineType({
         name: 'description',
         title: 'Description',
         type: 'text',
-        validation: (Rule) => Rule.required()
+        validation: Rule => Rule.required()
       }),
     ],
   

@@ -1,13 +1,11 @@
-import { getCities } from "@/sanity/sanity-utils";
+import { getCategories } from "@/sanity/sanity-utils"
+import Landing from "@/src/components/Landing"
 
 export default async function Home() {
-  const cityList = await getCities();
-  const res = await Promise.all(cityList);
-  console.log(cityList)
+  const categoryList = await getCategories()
+  console.log(categoryList)
   return (
-    <div>
-      <div>home</div>
-    </div>
+    <Landing />
   )
 }
 
