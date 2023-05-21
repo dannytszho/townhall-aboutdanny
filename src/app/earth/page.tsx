@@ -7,7 +7,7 @@ export default async function Earth() {
   console.log(res)
     return (
       <div>
-        <div><ThreeScene /></div>
+        <div><ThreeScene cityList={cityList} /></div>
       </div>
     )
   }

@@ -3,8 +3,15 @@ import React from 'react'
 import { Canvas } from '@react-three/fiber'
 import { Stats, OrbitControls } from '@react-three/drei'
 import Earth from './Earth'
+import { City } from '@/types/City'
 
-const ThreeScene = () => {
+// export type CityProps = {
+//   name: string | undefined;
+//   latitude: number;
+//   longitute: number;
+// }
+
+const ThreeScene = ({cityList}: any) => {
 
   return (
     <div className="scene">
@@ -16,7 +23,7 @@ const ThreeScene = () => {
         }}
       >
         <ambientLight color={"white"} intensity={0.3} />
-        <Earth />
+        <Earth cityList={cityList} />
         <OrbitControls />
         <Stats /> 
 

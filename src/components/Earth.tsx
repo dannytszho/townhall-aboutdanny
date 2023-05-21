@@ -3,17 +3,16 @@ import * as THREE from "three";
 import { TextureLoader } from "three";
 import { ThreeEvent, useLoader } from "@react-three/fiber";
 import { Html, Stars } from "@react-three/drei";
-import cityData from './../data/cityData.json'
 import CityCard from "./CityCard";
-import { getCities } from "@/sanity/sanity-utils";
+import { City } from '@/types/City'
 
-type CityProps = {
-  city: string | undefined;
-  lat: number;
-  lon: number;
-}
+// type CityProps = {
+//   name: string | undefined;
+//   latitude: number;
+//   longitute: number;
+// }
 
-function Earth({cityList}:any) {
+function Earth({cityList}: any) {
   const colorMap = useLoader(
     TextureLoader,
     './img/8k_earth_daymap.jpg'
@@ -32,7 +31,7 @@ function Earth({cityList}:any) {
   );
 
   const [showModal, setShowModal] = useState(false);
-  const [currentCity, setCurrentCity] = useState<CityProps | null>(null);
+  const [currentCity, setCurrentCity] = useState<City | null>(null);
 
 
   const handleModal = (city: any) => {
@@ -52,14 +51,6 @@ function Earth({cityList}:any) {
 
     return new THREE.Vector3(x, y, z);
   };
-
-  // const cityPosition1 = convertCoordinatesToPosition(22.3193, 114.1694);
-  const cityPositions = cityData.coordinates.map((city) => convertCoordinatesToPosition(city.lat, city.lon));
-  
-
-
-
-
 
   return (
     <>
@@ -92,14 +83,14 @@ function Earth({cityList}:any) {
           />
       </mesh>
 
-      {cityData.coordinates.map((city, index) => (
+      {cityList.map((city: City, index: any) => (
         <React.Fragment key={index}>
-          <mesh position={convertCoordinatesToPosition(city.lat, city.lon)} onClick={handleModal(city)}>
+          <mesh position={convertCoordinatesToPosition(city.latitude, city.longitute)} onClick={handleModal(city)}>
             <cylinderGeometry args={[0.005, 0.005, 0.05, 10]} />
           </mesh>
           {showModal ? 
             <Html>
-                <CityCard onClose={() => setShowModal(false)} name={currentCity?.city} />
+                <CityCard onClose={() => setShowModal(false)} name={currentCity?.name} description={currentCity?.description} image={currentCity?.image as string} />
             </Html> : null 
           }
         </React.Fragment>
@@ -107,25 +98,6 @@ function Earth({cityList}:any) {
     </>
   );
 }
-
-// const client = createClient({
-//   projectId: "prumhpvv", // you can find this in sanity.json
-//   dataset: "city", // or the name you chose in step 1
-//   apiVersion: "2023-05-18", // use a UTC date string
-//   useCdn: false, // `false` if you want to ensure fresh data
-// });
-
-// export const getCityData = async () => {
-//   const cityListQuery = `*[_type == "city"]`;
-
-      
-//   const cityList = await client.fetch(cityListQuery);
-//   console.log(cityList)
-  
-//   return {
-//     props: { ...cityList },
-//   };
-// };
 
 
 export default Earth;
