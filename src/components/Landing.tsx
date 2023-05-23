@@ -10,6 +10,16 @@ import {
 import Image from "next/image";
 import { useRef, useState } from "react";
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid';
+import Link from "next/link";
+
+type CategoryProps = {
+  _id: string;
+  title: string;
+  subtitle: string;
+  image: string;
+  thumbnail: string;
+  slug: string;
+}
  
 export default function Landing({categoryList}: {categoryList: Category[]}) {
   const carouselRef = useRef<HTMLDivElement>(null);
@@ -36,7 +46,7 @@ export default function Landing({categoryList}: {categoryList: Category[]}) {
     <div className="my-40">
       <div className="flex items-center justify-center overflow-x-hidden">
         <div className="flex overflow-x-hidden space-x-10 px-5 py-5" ref={carouselRef}>
-          {categoryList.map(({ _id, title, subtitle, image, thumbnail, _createdAt, slug }: any, index) =>
+          {categoryList.map(({ _id, title, subtitle, image, thumbnail, slug }: any, index) =>
             <Card key={_id}
               shadow={false}
               className="relative flex-[0_0_30.8%] h-[40rem] justify-center overflow-hidden text-center hover:scale-105 hover:rounded-xl hover:cursor-grabbing"
@@ -62,13 +72,15 @@ export default function Landing({categoryList}: {categoryList: Category[]}) {
                 <Typography variant="h5" className="mb-4 text-gray-400">
                   {title}
                 </Typography>
-                <Avatar
-                  size="xl"
-                  variant="circular"
-                  alt="candice wu"
-                  className="border-2 border-white"
-                  src={thumbnail}
-                />
+                <Link href={`/${slug}`}>
+                  <Avatar
+                    size="xl"
+                    variant="circular"
+                    alt="thumbnail"
+                    className="border-2 border-white hover:animate-bounce"
+                    src={thumbnail}
+                    />
+                  </Link>
               </CardBody>
             </Card>
           )}
