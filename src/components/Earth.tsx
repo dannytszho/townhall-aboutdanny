@@ -86,7 +86,8 @@ function Earth({cityList}: any) {
       {cityList.map((city: City, index: any) => (
         <React.Fragment key={index}>
           <mesh position={convertCoordinatesToPosition(city.latitude, city.longitute)} onClick={handleModal(city)}>
-            <cylinderGeometry args={[0.005, 0.005, 0.05, 10]} />
+            <cylinderGeometry args={[0.005, 0.0005, 0.03, 10]} />
+            <meshBasicMaterial color="red" />
           </mesh>
           {showModal ? 
             <Html>

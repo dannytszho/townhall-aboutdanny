@@ -26,7 +26,6 @@ const ThreeScene = ({cityList}: any) => {
         <Earth cityList={cityList} />
         <OrbitControls />
         <Stats /> 
-
       </Canvas>
     </div>
   )
