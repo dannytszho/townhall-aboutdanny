@@ -1,5 +1,10 @@
+import { Nav } from "@/src/components/Nav";
+
 export default function Family() {
     return (
-        <h1>Family Page</h1>
+        <>
+            <Nav />
+            <h1>Family Page</h1>
+        </>
     )
 }

@@ -1,5 +1,10 @@
+import { Nav } from "@/src/components/Nav"
+
 export default function Career() {
     return (
-        <h1>Career Page</h1>
+        <>
+            <Nav />
+            <h1>Career Page</h1>
+        </>
     )
 }

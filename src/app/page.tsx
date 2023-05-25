@@ -4,7 +4,7 @@ import Landing from "@/src/components/Landing"
 export default async function Home() {
   const categoryList = await getCategories()
   return (
-    <Landing categoryList={categoryList} />
+    <Landing categoryList={categoryList } slidesToShow={3}/>
   )
 }
 

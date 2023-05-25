@@ -20,7 +20,7 @@ type CityCardProps = {
 
 const CityCard = ({name, image, description, onClose}: CityCardProps) => {
     return (
-        <Card className="w-80 overflow-hidden left-[-820px] top-[-400px]">
+        <Card className="w-80 overflow-hidden left-[-170px] top-[-300px]">
           <CardHeader
           floated={false}
           shadow={false}
@@ -48,9 +48,6 @@ const CityCard = ({name, image, description, onClose}: CityCardProps) => {
               {description}
             </Typography>
           </CardBody>
-          <CardFooter className="pt-0">
-            <Button>Learn More</Button>
-          </CardFooter>
         </Card>
     )
 };
