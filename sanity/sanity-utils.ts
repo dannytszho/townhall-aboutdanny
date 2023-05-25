@@ -2,6 +2,7 @@ import { groq } from "next-sanity";
 import { City } from "@/types/City";
 import { client } from "./lib/client";
 import { Category } from "@/types/Category";
+import { Pet } from "@/types/Pet";
 
 export async function getCities(): Promise<City[]> {
   return client.fetch(
@@ -28,6 +29,18 @@ export async function getCategories(): Promise<Category[]> {
       order,
       subtitle,
       "slug": slug.current,
+    }`
+  )
+}
+
+export async function getPets(): Promise<Pet[]> {
+  return client.fetch(
+    groq`*[_type == "pet"]{
+      _id,
+      _createdAt,
+      title,
+      "image": image.asset->url,
+      order,
     }`
   )
 }

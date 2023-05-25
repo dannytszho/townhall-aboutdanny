@@ -43,13 +43,13 @@ export default function Landing({categoryList}: {categoryList: Category[]}) {
   };
   
   return (
-    <div className="my-40">
+    <div className="my-36">
       <div className="flex items-center justify-center overflow-x-hidden">
         <div className="flex overflow-x-hidden space-x-10 px-5 py-5" ref={carouselRef}>
           {categoryList.map(({ _id, title, subtitle, image, thumbnail, slug }: any, index) =>
             <Card key={_id}
               shadow={false}
-              className="relative flex-[0_0_30.8%] h-[40rem] justify-center overflow-hidden text-center hover:scale-105 hover:rounded-xl hover:cursor-grabbing"
+              className="relative flex-[0_0_30.8%] h-[42rem] justify-center overflow-hidden text-center hover:scale-105 hover:rounded-xl hover:cursor-grabbing"
             >
               
               <CardHeader
@@ -58,7 +58,7 @@ export default function Landing({categoryList}: {categoryList: Category[]}) {
                 color="transparent"
                 className="absolute inset-0 m-0 h-full w-full rounded-none bg-cover bg-center"
               >
-                <Image src={image} width={400} height={200} alt="ui/ux review check" />
+                <Image src={image} fill={true} className="object-fill" alt="ui/ux review check" />
                 <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-t from-black/80 via-black/50" />
               </CardHeader>
               <CardBody className="relative mt-96 py-14 px-6 md:px-12">
