@@ -44,3 +44,15 @@ export async function getPets(): Promise<Pet[]> {
     }`
   )
 }
+
+export async function getHobbies(): Promise<Pet[]> {
+  return client.fetch(
+    groq`*[_type == "hobby"]{
+      _id,
+      _createdAt,
+      title,
+      "image": image.asset->url,
+      order,
+    }`
+  )
+}
