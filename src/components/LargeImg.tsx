@@ -82,7 +82,7 @@ export const LargeImage = ({ imageInfo, open, setOpen }: LargeImageProp) => {
                   className=" cursor-pointer object-scale-down focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                   loader={({ src }) =>
                     urlForImage(src)
-                      .width(800)
+                      .width(imageWidth)
                       .fit("scale")
                       .auto("format")
                       .url()

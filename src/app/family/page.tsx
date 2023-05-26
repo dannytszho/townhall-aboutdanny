@@ -1,10 +1,12 @@
+import { getFamily } from "@/sanity/sanity-utils";
 import { Nav } from "@/src/components/Nav";
+import { SubPageRender } from "@/src/components/SubPageRender";
 
-export default function Family() {
+export default async function Family() {
+    const familyList = await getFamily();
     return (
         <>
-            <Nav />
-            <h1>Family Page</h1>
+            <SubPageRender itemList={familyList} />
         </>
     )
 }

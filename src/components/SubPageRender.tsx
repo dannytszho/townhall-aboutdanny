@@ -1,9 +1,10 @@
+'use client'
 import { useState } from "react";
 import { Nav } from "./Nav";
 import Image from "next/image";
 import { LargeImage } from "./LargeImg";
 
-export const HobbiesRender = ({ hobbiesList }:any) => {
+export const SubPageRender = ({ itemList }:any) => {
     const [imageInfo, setImageInfo] = useState({
         src: "",
         width: 0,
@@ -28,13 +29,12 @@ export const HobbiesRender = ({ hobbiesList }:any) => {
                     <div
                     className="flex flex-row flex-wrap justify-center items-top gap-4 my-3"
                     >
-                    {hobbiesList.map((hobby:any) => {
+                    {itemList.map((item:any) => {
                         return (
-                        <div key={hobby._id} className="flex flex-col items-center w-96 min-h-[456px] bg-main-slate pt-10 px-10 pb-9">
+                        <div key={item._id} className="flex flex-col items-center w-96 min-h-[456px] bg-main-slate pt-10 px-10 pb-9">
                             <Image
-                            src={hobby.image} width={220} height={220} onClick={() => openLarge({ ref: hobby.imageRef, width: hobby.imageInfo.width, height: hobby.imageInfo.height })} alt={hobby.title} />
-                            <h2 className='text-white pt-7 self-start font-montserrat font-bold'>{hobby.title}</h2>
-                            {/* <p className='text-white pt-7 self-start'>{hobby.description}</p> */}
+                            src={item.image} width={800} height={800} onClick={() => openLarge({ ref: item.imageRef, width: item.imageInfo.width, height: item.imageInfo.height })} alt={item.title} />
+                            <h2 className='text-white pt-7 self-start font-montserrat font-bold'>{item.title}</h2>
                         </div>
                         )
                     })}

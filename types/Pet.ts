@@ -4,4 +4,8 @@ export type Pet = {
     title: string;
     order: number;
     image: string;
+    imageInfo: {
+        width: number;
+        height: number;
+    }
 }

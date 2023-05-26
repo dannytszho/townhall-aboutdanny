@@ -42,6 +42,8 @@ export async function getPets(): Promise<Pet[]> {
       title,
       "image": image.asset->url,
       order,
+      'imageRef':image.asset._ref,
+      'imageInfo':image.asset->metadata.dimensions,
     }`
   )
 }
@@ -49,6 +51,20 @@ export async function getPets(): Promise<Pet[]> {
 export async function getHobbies(): Promise<Hobby[]> {
   return client.fetch(
     groq`*[_type == "hobby"]{
+      _id,
+      _createdAt,
+      title,
+      'image': image.asset->url,
+      'imageRef':image.asset._ref,
+      'imageInfo':image.asset->metadata.dimensions,
+      order,
+    }`
+  )
+}
+
+export async function getFamily(): Promise<Hobby[]> {
+  return client.fetch(
+    groq`*[_type == "family"]{
       _id,
       _createdAt,
       title,

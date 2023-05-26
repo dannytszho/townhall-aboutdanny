@@ -9,6 +9,7 @@ import {
 import { MouseEventHandler } from "react";
 import { PortableTextBlock } from "sanity";
 import Image from "next/image";
+import { MapPinIcon } from "@heroicons/react/24/solid";
 
 type CityCardProps = {
     onClose: MouseEventHandler<HTMLButtonElement>;
@@ -41,11 +42,8 @@ const CityCard = ({name, image, description, onClose}: CityCardProps) => {
                 ×
               </span>
             </button>
-            <Typography variant="h5" color="blue-gray" className="mb-2">
-              {name}
-            </Typography>
-            <Typography className="text-sm">
-              {description}
+            <Typography variant="h5" color="blue-gray" className="flex mb-2">
+              <MapPinIcon className="w-5 h-5" />&nbsp;{name}
             </Typography>
           </CardBody>
         </Card>
