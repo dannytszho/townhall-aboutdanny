@@ -33,8 +33,8 @@ export const SubPageRender = ({ itemList }:any) => {
                         return (
                         <div key={item._id} className="flex flex-col items-center w-96 min-h-[456px] bg-main-slate pt-10 px-10 pb-9">
                             <Image
-                            src={item.image} width={400} height={220} onClick={() => openLarge({ ref: item.imageRef, width: item.imageInfo.width, height: item.imageInfo.height })} alt={item.title} />
-                            <h2 className='text-white pt-7 self-start font-montserrat font-bold'>{item.title}</h2>
+                            src={item.image} width={400} height={220} className="hover:cursor-pointer" onClick={() => openLarge({ ref: item.imageRef, width: item.imageInfo.width, height: item.imageInfo.height })} alt={item.title} />
+                            {/* <h2 className='text-white pt-7 self-start font-montserrat font-bold'>{item.title}</h2> */}
                         </div>
                         )
                     })}

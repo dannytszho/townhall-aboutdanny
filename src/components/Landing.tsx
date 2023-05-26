@@ -44,12 +44,12 @@ export default function Landing({categoryList, slidesToShow = 3}: {categoryList:
   
   return (
     <div className="my-32">
-      <div className="flex flex-col items-center justify-center overflow-x-hidden md:mx-16">
+      <div className="flex sm:flex-row md:flex-col items-center justify-center overflow-x-hidden md:mx-16">
         <div className="flex sm:flex-col md:flex-row overflow-x-hidden md:space-x-10 px-5 py-5" ref={carouselRef}>
           {categoryList.map(({ _id, title, subtitle, image, thumbnail, slug }: any) =>
             <Card key={_id}
               shadow={false}
-              className="relative sm:my-10 sm:flex-[0_0_98%] md:flex-[0_0_55.8%] lg:flex-[0_0_30.8%] sm:h-[35rem] md:h-[42rem] md:w-32 lg:w-56 justify-center overflow-hidden text-center hover:scale-105 hover:rounded-xl hover:cursor-grabbing"
+              className="relative sm:my-10 sm:flex-[0_0_98%] md:flex-[0_0_55.8%] lg:flex-[0_0_30.8%] sm:h-[35rem] md:h-[42rem] sm:w-20 md:w-32 lg:w-56 justify-center overflow-hidden text-center hover:scale-105 hover:rounded-xl hover:cursor-grabbing"
             >
               <CardHeader
                 floated={false}
