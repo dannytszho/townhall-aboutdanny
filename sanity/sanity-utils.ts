@@ -3,6 +3,7 @@ import { City } from "@/types/City";
 import { client } from "./lib/client";
 import { Category } from "@/types/Category";
 import { Pet } from "@/types/Pet";
+import { Hobby } from "@/types/Hobbies";
 
 export async function getCities(): Promise<City[]> {
   return client.fetch(
@@ -45,13 +46,15 @@ export async function getPets(): Promise<Pet[]> {
   )
 }
 
-export async function getHobbies(): Promise<Pet[]> {
+export async function getHobbies(): Promise<Hobby[]> {
   return client.fetch(
     groq`*[_type == "hobby"]{
       _id,
       _createdAt,
       title,
-      "image": image.asset->url,
+      'image': image.asset->url,
+      'imageRef':image.asset._ref,
+      'imageInfo':image.asset->metadata.dimensions,
       order,
     }`
   )
